@@ -1,0 +1,2 @@
+class InvalidAuthSchemeError(Exception):
+    pass
