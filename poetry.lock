@@ -272,6 +272,16 @@ files = [
 ]
 
 [[package]]
+name = "mimesis"
+version = "4.1.3"
+description = "Mimesis: fake data generator."
+optional = false
+python-versions = "*"
+files = [
+    {file = "mimesis-4.1.3.tar.gz", hash = "sha256:90f36c21c1bb9944afc17178eb5868b0c85aa1fe49eb04bcbdafafd1ad4ca2ba"},
+]
+
+[[package]]
 name = "mypy"
 version = "1.8.0"
 description = "Optional static typing for Python"
@@ -440,6 +450,21 @@ pytest = ">=4.6"
 testing = ["fields", "hunter", "process-tests", "pytest-xdist", "six", "virtualenv"]
 
 [[package]]
+name = "pytest-mimesis"
+version = "1.1.0"
+description = "Mimesis integration with the pytest test runner"
+optional = false
+python-versions = ">=3.6,<4.0"
+files = [
+    {file = "pytest_mimesis-1.1.0-py3-none-any.whl", hash = "sha256:5cc30a967ee14d50f44074e7bb93f9e9a58b202ef08047deb237efa1e462155d"},
+    {file = "pytest_mimesis-1.1.0.tar.gz", hash = "sha256:26a152067e2de0a0dae8e5045710524785646f8b68c6efdc336b73f15ee292e3"},
+]
+
+[package.dependencies]
+mimesis = ">=4.0,<5.0"
+pytest = ">=4.2"
+
+[[package]]
 name = "pytest-randomly"
 version = "3.15.0"
 description = "Pytest plugin to randomly order tests and control random.seed."
@@ -466,6 +491,25 @@ files = [
 
 [package.dependencies]
 pytest = "*"
+
+[[package]]
+name = "pytest-sugar"
+version = "1.0.0"
+description = "pytest-sugar is a plugin for pytest that changes the default look and feel of pytest (e.g. progressbar, show tests that fail instantly)."
+optional = false
+python-versions = "*"
+files = [
+    {file = "pytest-sugar-1.0.0.tar.gz", hash = "sha256:6422e83258f5b0c04ce7c632176c7732cab5fdb909cb39cca5c9139f81276c0a"},
+    {file = "pytest_sugar-1.0.0-py3-none-any.whl", hash = "sha256:70ebcd8fc5795dc457ff8b69d266a4e2e8a74ae0c3edc749381c64b5246c8dfd"},
+]
+
+[package.dependencies]
+packaging = ">=21.3"
+pytest = ">=6.2.0"
+termcolor = ">=2.1.0"
+
+[package.extras]
+dev = ["black", "flake8", "pre-commit"]
 
 [[package]]
 name = "pytest-xdist"
@@ -525,6 +569,20 @@ files = [
 ]
 
 [[package]]
+name = "termcolor"
+version = "2.4.0"
+description = "ANSI color formatting for output in terminal"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "termcolor-2.4.0-py3-none-any.whl", hash = "sha256:9297c0df9c99445c2412e832e882a7884038a25617c60cea2ad69488d4040d63"},
+    {file = "termcolor-2.4.0.tar.gz", hash = "sha256:aab9e56047c8ac41ed798fa36d892a37aca6b3e9159f3e0c24bc64a9b3ac7b7a"},
+]
+
+[package.extras]
+tests = ["pytest", "pytest-cov"]
+
+[[package]]
 name = "tomli"
 version = "2.0.1"
 description = "A lil' TOML parser"
@@ -560,4 +618,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "5d131343bf91050f171851d8e7d20d4bf6d74191460714f57a152a29d9d96d09"
+content-hash = "d173fc960e78e7bb941f3ea14084d0b5543bfce5b45add65506990f1cbdde127"
