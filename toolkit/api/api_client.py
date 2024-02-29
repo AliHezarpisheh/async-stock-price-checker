@@ -11,15 +11,13 @@ import httpx
 
 class AsyncAPIClient:
     """AsyncAPIClient class for making asynchronous HTTP requests."""
-    def __init__(
-        self, base_url: str, timeout=10, max_retries=3, default_headers=None
-    ) -> None:
+
+    def __init__(self, base_url: str, timeout=10, default_headers=None) -> None:
         """Initialize the AsyncAPIClient."""
         self.base_url = base_url
         self.timeout = timeout
         self.default_headers = default_headers or {}
-        self.max_retries = max_retries
-        self.client = httpx.AsyncClient()
+        self._client = httpx.AsyncClient
 
     async def _request(
         self,
@@ -47,7 +45,7 @@ class AsyncAPIClient:
         full_url = urljoin(self.base_url, endpoint)
         request_headers = {**self.default_headers, **(headers or {})}
 
-        with self.client as client:
+        async with self._client() as client:
             response: httpx.Response = await client.request(
                 method,
                 full_url,
@@ -62,7 +60,7 @@ class AsyncAPIClient:
 
     async def get(
         self,
-        endpoint: str,
+        endpoint: str = "",
         headers: Union[dict[str, str], None] = None,
         params: Union[dict[str, Any], None] = None,
         **kwargs: dict,
@@ -71,7 +69,7 @@ class AsyncAPIClient:
         Make an asynchronous HTTP GET request.
 
         Parameters:
-        - endpoint (str): API endpoint.
+        - endpoint (str, optional): API endpoint.
         - headers (dict, optional): Additional headers for the request.
         - params (dict, optional): URL parameters.
         - **kwargs: Additional keyword arguments for httpx.AsyncClient.request.
@@ -86,7 +84,7 @@ class AsyncAPIClient:
 
     async def post(
         self,
-        endpoint: str,
+        endpoint: str = "",
         headers: Union[dict[str, str], None] = None,
         params: Union[dict[str, Any], None] = None,
         payload: Union[dict[str, Any]] = None,
@@ -96,7 +94,7 @@ class AsyncAPIClient:
         Make an asynchronous HTTP POST request.
 
         Parameters:
-        - endpoint (str): API endpoint.
+        - endpoint (str, optional): API endpoint.
         - headers (dict, optional): Additional headers for the request.
         - params (dict, optional): URL parameters.
         - payload (dict, optional): Request data.
@@ -117,7 +115,7 @@ class AsyncAPIClient:
 
     async def put(
         self,
-        endpoint: str,
+        endpoint: str = "",
         headers: Union[dict[str, str], None] = None,
         params: Union[dict[str, Any], None] = None,
         payload: Union[dict[str, Any]] = None,
@@ -127,7 +125,7 @@ class AsyncAPIClient:
         Make an asynchronous HTTP PUT request.
 
         Parameters:
-        - endpoint (str): API endpoint.
+        - endpoint (str, optional): API endpoint.
         - headers (dict, optional): Additional headers for the request.
         - params (dict, optional): URL parameters.
         - payload (dict, optional): Request data.
@@ -148,7 +146,7 @@ class AsyncAPIClient:
 
     async def patch(
         self,
-        endpoint: str,
+        endpoint: str = "",
         headers: Union[dict[str, str], None] = None,
         params: Union[dict[str, Any], None] = None,
         payload: Union[dict[str, Any]] = None,
@@ -158,7 +156,7 @@ class AsyncAPIClient:
         Make an asynchronous HTTP PATCH request.
 
         Parameters:
-        - endpoint (str): API endpoint.
+        - endpoint (str, optional): API endpoint.
         - headers (dict, optional): Additional headers for the request.
         - params (dict, optional): URL parameters.
         - payload (dict, optional): Request data.
@@ -179,7 +177,7 @@ class AsyncAPIClient:
 
     async def delete(
         self,
-        endpoint: str,
+        endpoint: str = "",
         headers: Union[dict[str, str], None] = None,
         params: Union[dict[str, Any], None] = None,
         **kwargs: dict,
@@ -188,7 +186,7 @@ class AsyncAPIClient:
         Make an asynchronous HTTP GET request.
 
         Parameters:
-        - endpoint (str): API endpoint.
+        - endpoint (str, optional): API endpoint.
         - headers (dict, optional): Additional headers for the request.
         - params (dict, optional): URL parameters.
         - **kwargs: Additional keyword arguments for httpx.AsyncClient.request.
@@ -203,4 +201,4 @@ class AsyncAPIClient:
 
     async def close(self) -> None:
         """Close the underlying asynchronous HTTP client."""
-        await self.client.aclose()
+        await self._client.aclose()
