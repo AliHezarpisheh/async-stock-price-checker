@@ -8,7 +8,6 @@ from pathlib import Path
 from typing import Generator
 
 import pytest
-import tomlkit
 
 from config.helper.funcs import read_toml, validate_and_create_dirs
 
@@ -104,7 +103,7 @@ def test_read_invalid_toml_file(invalid_temp_toml_file_path: Path) -> None:
     Test case for checking if the read_toml function correctly handles the case where
     the specified TOML file has a syntax error.
     """
-    with pytest.raises(tomlkit.exceptions.ParseError):
+    with pytest.raises(SystemExit):
         read_toml(path=invalid_temp_toml_file_path)
 
 

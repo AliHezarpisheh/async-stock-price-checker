@@ -38,7 +38,7 @@ def read_toml(path: Path) -> dict:
     except FileNotFoundError:
         print(f"\n\033[91mThis path is unreachable: `{path}`!")
         sys.exit()
-    except tomlkit.exceptions.UnexpectedCharError:
+    except tomlkit.exceptions.ParseError:
         print(f"\n\033[91mSyntax Error in: `{path}`!")
         sys.exit()
 
