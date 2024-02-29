@@ -1,7 +1,4 @@
-"""
-This module contains test cases and fixtures for the utility functions related to TOML
-file handling.
-"""
+"""Test cases and fixtures for the utility functions related to TOML file handling."""
 
 import tempfile
 from pathlib import Path
@@ -17,8 +14,10 @@ def valid_sample_toml_content() -> str:
     """
     Fixture: Providing a sample TOML content as a string.
 
-    Returns:
-        str: Sample TOML content.
+    Returns
+    -------
+    str
+        Sample TOML content.
     """
     return 'key = "value"'
 
@@ -28,8 +27,10 @@ def invalid_sample_toml_content() -> str:
     """
     Fixture: Providing a sample TOML content as a string.
 
-    Returns:
-        str: Sample TOML content.
+    Returns
+    -------
+    str
+        Sample TOML content.
     """
     return "invalid data for toml files."
 
@@ -37,14 +38,17 @@ def invalid_sample_toml_content() -> str:
 @pytest.fixture
 def valid_temp_toml_file_path(valid_sample_toml_content: str) -> Generator:
     """
-    Fixture: Creating a temporary TOML file with the sample content and yielding its
-    Path.
+    Fixture: Creating a temporary TOML file with the sample content and yielding Path.
 
-    Args:
-        valid_sample_toml_content (str): Sample TOML content.
+    Parameters
+    ----------
+    valid_sample_toml_content : str
+        Sample TOML content.
 
-    Yields:
-        Generator[Path]: Temporary TOML file path.
+    Yields
+    ------
+    Generator[Path, None, None]
+        Temporary TOML file path.
     """
     with tempfile.NamedTemporaryFile(delete=False, suffix=".toml") as file:
         file.write(valid_sample_toml_content.encode())
@@ -56,14 +60,17 @@ def valid_temp_toml_file_path(valid_sample_toml_content: str) -> Generator:
 @pytest.fixture
 def invalid_temp_toml_file_path(invalid_sample_toml_content: str) -> Generator:
     """
-    Fixture: Creating a temporary TOML file with the sample content and yielding its
-    Path.
+    Fixture: Creating a temporary TOML file with the sample content and yielding Path.
 
-    Args:
-        valid_sample_toml_content (str): Sample TOML content.
+    Parameters
+    ----------
+    valid_sample_toml_content : str
+        Sample TOML content.
 
-    Yields:
-        Generator[Path]: Temporary TOML file path.
+    Yields
+    ------
+    Generator[Path, None, None]
+        Temporary TOML file path.
     """
     with tempfile.NamedTemporaryFile(delete=False, suffix=".toml") as file:
         file.write(invalid_sample_toml_content.encode())
@@ -74,9 +81,7 @@ def invalid_temp_toml_file_path(invalid_sample_toml_content: str) -> Generator:
 
 @pytest.fixture
 def sample_handlers(tmp_path: Path):
-    """
-    Fixture that returns a sample dictionary of handlers with associated filenames.
-    """
+    """Fixture returning a sample dictionary of handlers with associated filenames."""
     handlers = {
         "handler1": {"filename": tmp_path / "path1/log.txt"},
         "handler2": {"filename": tmp_path / "path2/log.txt"},
@@ -90,8 +95,10 @@ def test_read_valid_toml_file(valid_temp_toml_file_path: Path) -> None:
     """
     Test case for checking if the read_toml function reads a valid TOML file correctly.
 
-    Args:
-        valid_temp_toml_file_path (Path): Path to the temporary TOML file.
+    Parameters
+    ----------
+    valid_temp_toml_file_path : Path
+        Path to the temporary TOML file.
     """
     actual = read_toml(path=valid_temp_toml_file_path)
     expected = {"key": "value"}
@@ -99,19 +106,13 @@ def test_read_valid_toml_file(valid_temp_toml_file_path: Path) -> None:
 
 
 def test_read_invalid_toml_file(invalid_temp_toml_file_path: Path) -> None:
-    """
-    Test case for checking if the read_toml function correctly handles the case where
-    the specified TOML file has a syntax error.
-    """
+    """Test for read_toml handling syntax errors in specified TOML file."""
     with pytest.raises(SystemExit):
         read_toml(path=invalid_temp_toml_file_path)
 
 
 def test_read_toml_file_not_found() -> None:
-    """
-    Test case for checking if the read_toml function correctly handles the case where
-    the specified TOML file is not found.
-    """
+    """Test for read_toml handling case where specified TOML file is not found."""
     with pytest.raises(SystemExit):
         read_toml(Path("nonexistence_file.toml"))
 

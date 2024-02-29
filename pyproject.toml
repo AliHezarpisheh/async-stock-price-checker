@@ -20,6 +20,7 @@ httpx = "^0.26.0"
 pytest-sugar = "^1.0.0"
 pytest-mimesis = "^1.1.0"
 pytest-asyncio = "^0.23.5"
+isort = "^5.13.2"
 
 
 [build-system]
@@ -36,9 +37,10 @@ lint.select = [
     "UP",  # pyupgrade
     "C90",  # mccabe
     "D",  # pydocstyle
+    "I",  # isort
     "RUF",  # Ruff specific rules
 ]
-lint.ignore = []
+lint.ignore = ["D104"]
 
 lint.fixable = [
     "F401",  # Remove unused imports.
@@ -46,7 +48,21 @@ lint.fixable = [
 ]
 
 [tool.ruff.lint.per-file-ignores]
-"*/__init__.py" = ["F401"]
+"*/__init__.py" = ["F401", "D100"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+include_trailing_comma = true
+
+
+[tool.mypy]
+strict = true
+ignore_missing_imports = true
 
 
 [tool.pytest.ini_options]
@@ -80,38 +96,3 @@ source = [
     "config",
     "toolkit",
 ]
-
-
-[tool.mypy]
-strict = true
-ignore_missing_imports = true
-
-
-[tool.pylint.messages_control]
-ignore-patterns = [
-    "logging.toml",
-    "poetry.lock",
-    "pyproject.toml",
-    "requirements.txt"
-]
-
-
-[tool.pylint.'options']
-ignore-patterns = [
-    "logging.toml",
-    "poetry.lock",
-    "pyproject.toml",
-    "requirements.txt"
-]
-
-[tool.pylint.'src.options']
-# Disable warning about line too long, this part is handled by ruff (C0301)
-disable = ["C0301"]
-include = ["stock_checker/**/*.py"]
-
-[tool.pylint.'tests.options']
-# Disable warning about similar lines in multiple files (R0801)
-# Disable warning about redefining a name from an outer scope (W0621)
-# Disable warning about line too long, this part is handled by ruff (C0301)
-disable = ["R0801", "W0621", "C0301"]
-include = ["tests/**/*.py"]

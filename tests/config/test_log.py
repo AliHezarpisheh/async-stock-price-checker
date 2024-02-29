@@ -1,7 +1,4 @@
-"""
-This module contains a test case for the logging setup using a sample TOML configuration
-file.
-"""
+"""Test case for the logging setup using a sample TOML configuration file."""
 
 import logging
 from pathlib import Path
@@ -15,16 +12,20 @@ from config.logging import setup_logging
 @pytest.fixture
 def sample_config_path(tmp_path: Path) -> Generator[Path, None, None]:
     """
-    Fixture creates a temporary sample TOML configuration file for testing purposes.
+    Fixture: Creates a temporary sample TOML configuration file for testing purposes.
 
-    Parameters:
-        tmp_path (Path): The temporary path where the configuration file will be
-        created.
+    Parameters
+    ----------
+    tmp_path : Path
+        The temporary path where the configuration file will be created.
 
-    Returns:
-        Path: The path to the created sample configuration file.
+    Returns
+    -------
+    Path
+        The path to the created sample configuration file.
 
-    Note:
+    Note
+    ----
     The function uses a TOML-formatted string as content to simulate a configuration
     file. The created file is automatically deleted after the test that uses it is
     completed.
@@ -62,18 +63,23 @@ def test_setup_logging(sample_config_path: Path, caplog: Any) -> None:
     """
     Tests the setup of logging configurations using a sample TOML configuration file.
 
-    Parameters:
-        sample_config_path (Path): The path to the sample TOML configuration file.
-        caplog (Any): A pytest fixture for capturing log messages during testing.
+    Parameters
+    ----------
+    sample_config_path : Path
+        The path to the sample TOML configuration file.
+    caplog : Any
+        A pytest fixture for capturing log messages during testing.
 
-    Test Steps:
+    Test Steps
+    ----------
     1. Reads the sample configuration file.
     2. Sets up logging using the provided configuration.
     3. Checks if the log file path is created.
     4. Logs a test message using the configured logger.
     5. Verifies that the test log message appears in the captured logs.
 
-    Note:
+    Note
+    ----
     This test function assumes the existence of a 'log' module with a 'setup_logging'
     function that takes a configuration file path and sets up the logging configuration
     accordingly.

@@ -1,10 +1,7 @@
-"""api_client Module
-
-This module provides clients for making HTTP requests using the httpx library.
-"""
+"""Client for making HTTP requests using the httpx library."""
 
 from urllib.parse import urljoin
-from typing import Union, Any
+from typing import Optional, Any
 
 import httpx
 
@@ -23,24 +20,33 @@ class AsyncAPIClient:
         self,
         method: str,
         endpoint: str,
-        headers: Union[dict[str, str], None] = None,
-        params: Union[dict[str, Any], None] = None,
-        payload: Union[dict[str, Any]] = None,
+        headers: Optional[dict[str, Any]] = None,
+        params: Optional[dict[str, Any]] = None,
+        payload: Optional[dict[str, Any]] = None,
         **kwargs: dict,
     ) -> httpx.Response:
         """
         Make an asynchronous HTTP request.
 
-        Parameters:
-        - method (str): HTTP method (GET, POST, PUT, PATCH, DELETE).
-        - endpoint (str): API endpoint.
-        - headers (dict, optional): Additional headers for the request.
-        - params (dict, optional): URL parameters.
-        - payload (dict, optional): Request payload for methods like POST, PUT, PATCH.
-        - **kwargs: Additional keyword arguments for httpx.AsyncClient.request.
+        Parameters
+        ----------
+        method : str
+            HTTP method (GET, POST, PUT, PATCH, DELETE).
+        endpoint : str
+            API endpoint.
+        headers : dict, optional
+            Additional headers for the request.
+        params : dict, optional
+            URL parameters.
+        payload : dict, optional
+            Request payload for methods like POST, PUT, PATCH.
+        **kwargs
+            Additional keyword arguments for httpx.AsyncClient.request.
 
-        Returns:
-        - httpx.Response: The HTTP response object.
+        Returns
+        -------
+        httpx.Response
+            The HTTP response object.
         """
         full_url = urljoin(self.base_url, endpoint)
         request_headers = {**self.default_headers, **(headers or {})}
@@ -61,21 +67,28 @@ class AsyncAPIClient:
     async def get(
         self,
         endpoint: str = "",
-        headers: Union[dict[str, str], None] = None,
-        params: Union[dict[str, Any], None] = None,
+        headers: Optional[dict[str, Any]] = None,
+        params: Optional[dict[str, Any]] = None,
         **kwargs: dict,
     ) -> httpx.Response:
         """
         Make an asynchronous HTTP GET request.
 
-        Parameters:
-        - endpoint (str, optional): API endpoint.
-        - headers (dict, optional): Additional headers for the request.
-        - params (dict, optional): URL parameters.
-        - **kwargs: Additional keyword arguments for httpx.AsyncClient.request.
+        Parameters
+        ----------
+        endpoint : str, optional
+            API endpoint.
+        headers : dict, optional
+            Additional headers for the request.
+        params : dict, optional
+            URL parameters.
+        **kwargs
+            Additional keyword arguments for httpx.AsyncClient.request.
 
-        Returns:
-        - httpx.Response: The HTTP response object.
+        Returns
+        -------
+        httpx.Response
+            The HTTP response object.
         """
         response = await self._request(
             method="GET", endpoint=endpoint, headers=headers, params=params, **kwargs
@@ -85,23 +98,31 @@ class AsyncAPIClient:
     async def post(
         self,
         endpoint: str = "",
-        headers: Union[dict[str, str], None] = None,
-        params: Union[dict[str, Any], None] = None,
-        payload: Union[dict[str, Any]] = None,
+        headers: Optional[dict[str, Any]] = None,
+        params: Optional[dict[str, Any]] = None,
+        payload: Optional[dict[str, Any]] = None,
         **kwargs: dict,
     ) -> httpx.Response:
         """
         Make an asynchronous HTTP POST request.
 
-        Parameters:
-        - endpoint (str, optional): API endpoint.
-        - headers (dict, optional): Additional headers for the request.
-        - params (dict, optional): URL parameters.
-        - payload (dict, optional): Request data.
-        - **kwargs: Additional keyword arguments for httpx.AsyncClient.request.
+        Parameters
+        ----------
+        endpoint : str, optional
+            API endpoint.
+        headers : dict, optional
+            Additional headers for the request.
+        params : dict, optional
+            URL parameters.
+        payload : dict, optional
+            Request data.
+        **kwargs
+            Additional keyword arguments for httpx.AsyncClient.request.
 
-        Returns:
-        - httpx.Response: The HTTP response object.
+        Returns
+        -------
+        httpx.Response
+            The HTTP response object.
         """
         response = await self._request(
             method="POST",
@@ -116,23 +137,31 @@ class AsyncAPIClient:
     async def put(
         self,
         endpoint: str = "",
-        headers: Union[dict[str, str], None] = None,
-        params: Union[dict[str, Any], None] = None,
-        payload: Union[dict[str, Any]] = None,
+        headers: Optional[dict[str, Any]] = None,
+        params: Optional[dict[str, Any]] = None,
+        payload: Optional[dict[str, Any]] = None,
         **kwargs: dict,
     ) -> httpx.Response:
         """
         Make an asynchronous HTTP PUT request.
 
-        Parameters:
-        - endpoint (str, optional): API endpoint.
-        - headers (dict, optional): Additional headers for the request.
-        - params (dict, optional): URL parameters.
-        - payload (dict, optional): Request data.
-        - **kwargs: Additional keyword arguments for httpx.AsyncClient.request.
+        Parameters
+        ----------
+        endpoint : str, optional
+            API endpoint.
+        headers : dict, optional
+            Additional headers for the request.
+        params : dict, optional
+            URL parameters.
+        payload : dict, optional
+            Request data.
+        **kwargs
+            Additional keyword arguments for httpx.AsyncClient.request.
 
-        Returns:
-        - httpx.Response: The HTTP response object.
+        Returns
+        -------
+        httpx.Response
+            The HTTP response object.
         """
         response = await self._request(
             method="PUT",
@@ -147,23 +176,31 @@ class AsyncAPIClient:
     async def patch(
         self,
         endpoint: str = "",
-        headers: Union[dict[str, str], None] = None,
-        params: Union[dict[str, Any], None] = None,
-        payload: Union[dict[str, Any]] = None,
+        headers: Optional[dict[str, Any]] = None,
+        params: Optional[dict[str, Any]] = None,
+        payload: Optional[dict[str, Any]] = None,
         **kwargs: dict,
     ) -> httpx.Response:
         """
         Make an asynchronous HTTP PATCH request.
 
-        Parameters:
-        - endpoint (str, optional): API endpoint.
-        - headers (dict, optional): Additional headers for the request.
-        - params (dict, optional): URL parameters.
-        - payload (dict, optional): Request data.
-        - **kwargs: Additional keyword arguments for httpx.AsyncClient.request.
+        Parameters
+        ----------
+        endpoint : str, optional
+            API endpoint.
+        headers : dict, optional
+            Additional headers for the request.
+        params : dict, optional
+            URL parameters.
+        payload : dict, optional
+            Request data.
+        **kwargs
+            Additional keyword arguments for httpx.AsyncClient.request.
 
-        Returns:
-        - httpx.Response: The HTTP response object.
+        Returns
+        -------
+        httpx.Response
+            The HTTP response object.
         """
         response = await self._request(
             method="PATCH",
@@ -178,21 +215,28 @@ class AsyncAPIClient:
     async def delete(
         self,
         endpoint: str = "",
-        headers: Union[dict[str, str], None] = None,
-        params: Union[dict[str, Any], None] = None,
+        headers: Optional[dict[str, Any]] = None,
+        params: Optional[dict[str, Any]] = None,
         **kwargs: dict,
     ) -> httpx.Response:
         """
-        Make an asynchronous HTTP GET request.
+        Make an asynchronous HTTP DELETE request.
 
-        Parameters:
-        - endpoint (str, optional): API endpoint.
-        - headers (dict, optional): Additional headers for the request.
-        - params (dict, optional): URL parameters.
-        - **kwargs: Additional keyword arguments for httpx.AsyncClient.request.
+        Parameters
+        ----------
+        endpoint : str, optional
+            API endpoint.
+        headers : dict, optional
+            Additional headers for the request.
+        params : dict, optional
+            URL parameters.
+        **kwargs
+            Additional keyword arguments for httpx.AsyncClient.request.
 
-        Returns:
-        - httpx.Response: The HTTP response object.
+        Returns
+        -------
+        httpx.Response
+            The HTTP response object.
         """
         response = await self._request(
             method="DELETE", endpoint=endpoint, headers=headers, params=params, **kwargs

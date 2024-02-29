@@ -1,6 +1,4 @@
-"""
-Module providing tests for the AsyncAPIClient class in toolkit.api.api_client module.
-"""
+"""Tests for the AsyncAPIClient class in toolkit.api.api_client module."""
 
 from http import HTTPStatus
 from unittest import mock
@@ -13,7 +11,14 @@ from toolkit.api.api_client import AsyncAPIClient
 
 @pytest.fixture
 def async_client() -> AsyncAPIClient:
-    """Fixture providing an instance of AsyncAPIClient with a base URL."""
+    """
+    Fixture providing an instance of AsyncAPIClient with a base URL.
+
+    Returns
+    -------
+    AsyncAPIClient
+        An instance of AsyncAPIClient with a base URL.
+    """
     base_url = "https://www.example.com"
     return AsyncAPIClient(base_url=base_url)
 

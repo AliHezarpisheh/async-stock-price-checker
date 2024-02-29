@@ -1,8 +1,8 @@
-"""
-This module provides functions for setting up logging configurations based on a TOML
-configuration file. It includes functionality for reading the TOML configuration,
-validating and creating directories for log files, and configuring the logging system
-using the provided configuration.
+"""Provides functions for setting up logging configurations based on a TOML file.
+
+It includes functionality for reading the TOML configuration, validating and creating
+directories for log files, and configuring the logging system using the provided
+configuration.
 
 Internal Dependencies:
     - .utils.funcs.read_toml: A function to read a TOML file and return its content.
@@ -22,7 +22,7 @@ from ..helper.funcs import read_toml, validate_and_create_dirs
 
 
 def setup_logging(logging_config_path: Path) -> None:
-    """Setup the logging configurations."""
+    """Set up the logging configurations."""
     logging_config = read_toml(path=logging_config_path)
     # Check or Create the dirs of log files specified in the config.
     handlers: dict[str, dict] = logging_config.get("handlers", None)
