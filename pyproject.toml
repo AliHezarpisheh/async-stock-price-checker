@@ -19,6 +19,7 @@ pytest-randomly = "^3.15.0"
 httpx = "^0.26.0"
 pytest-sugar = "^1.0.0"
 pytest-mimesis = "^1.1.0"
+pytest-asyncio = "^0.23.5"
 
 
 [build-system]
@@ -76,8 +77,8 @@ xfail_strict = true
 [tool.coverage.run]
 parallel = true
 source = [
-    "stock_checker",
-    "config"
+    "config",
+    "toolkit",
 ]
 
 
