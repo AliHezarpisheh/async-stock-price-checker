@@ -1,7 +1,7 @@
 """Client for making HTTP requests using the httpx library."""
 
+from typing import Any, Optional
 from urllib.parse import urljoin
-from typing import Optional, Any
 
 import httpx
 
