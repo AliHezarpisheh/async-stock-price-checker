@@ -19,11 +19,12 @@ creation in a logging setup.
 
 import sys
 from pathlib import Path
+from typing import Any
 
 import tomlkit
 
 
-def read_toml(path: Path) -> dict:
+def read_toml(path: Path) -> dict[str, Any]:
     """
     Read a TOML file and return its content as a dictionary.
 
@@ -49,7 +50,7 @@ def read_toml(path: Path) -> dict:
         sys.exit()
 
 
-def validate_and_create_dirs(handlers: dict[str, dict]) -> list[Path]:
+def validate_and_create_dirs(handlers: dict[str, dict[str, Any]]) -> list[Path]:
     """
     Validate the configuration and create directories specified in handlers.
 

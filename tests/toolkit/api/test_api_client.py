@@ -154,18 +154,3 @@ async def test_delete(async_client: AsyncAPIClient) -> None:
         assert response.text == "test"
 
         mock_request.assert_awaited_once()
-
-
-@pytest.mark.asyncio
-async def test_close(async_client: AsyncAPIClient) -> None:
-    """
-    Test the 'close' method of AsyncAPIClient.
-
-    The method should close the underlying asynchronous HTTP client.
-    """
-    with mock.patch.object(
-        async_client._client, "aclose", new_callable=mock.AsyncMock
-    ) as mock_aclose:
-        await async_client.close()
-
-        mock_aclose.assert_called_once()

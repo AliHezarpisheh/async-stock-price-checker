@@ -9,7 +9,7 @@ import httpx
 class AsyncAPIClient:
     """AsyncAPIClient class for making asynchronous HTTP requests."""
 
-    def __init__(self, base_url: str, timeout=10, default_headers=None) -> None:
+    def __init__(self, base_url: str, timeout: int = 10, default_headers: Optional[dict[str, Any]] = None) -> None:
         """Initialize the AsyncAPIClient."""
         self.base_url = base_url
         self.timeout = timeout
@@ -23,7 +23,7 @@ class AsyncAPIClient:
         headers: Optional[dict[str, Any]] = None,
         params: Optional[dict[str, Any]] = None,
         payload: Optional[dict[str, Any]] = None,
-        **kwargs: dict,
+        **kwargs: Any,
     ) -> httpx.Response:
         """
         Make an asynchronous HTTP request.
@@ -69,7 +69,7 @@ class AsyncAPIClient:
         endpoint: str = "",
         headers: Optional[dict[str, Any]] = None,
         params: Optional[dict[str, Any]] = None,
-        **kwargs: dict,
+        **kwargs: Any,
     ) -> httpx.Response:
         """
         Make an asynchronous HTTP GET request.
@@ -101,7 +101,7 @@ class AsyncAPIClient:
         headers: Optional[dict[str, Any]] = None,
         params: Optional[dict[str, Any]] = None,
         payload: Optional[dict[str, Any]] = None,
-        **kwargs: dict,
+        **kwargs: Any,
     ) -> httpx.Response:
         """
         Make an asynchronous HTTP POST request.
@@ -140,7 +140,7 @@ class AsyncAPIClient:
         headers: Optional[dict[str, Any]] = None,
         params: Optional[dict[str, Any]] = None,
         payload: Optional[dict[str, Any]] = None,
-        **kwargs: dict,
+        **kwargs: Any,
     ) -> httpx.Response:
         """
         Make an asynchronous HTTP PUT request.
@@ -179,7 +179,7 @@ class AsyncAPIClient:
         headers: Optional[dict[str, Any]] = None,
         params: Optional[dict[str, Any]] = None,
         payload: Optional[dict[str, Any]] = None,
-        **kwargs: dict,
+        **kwargs: Any,
     ) -> httpx.Response:
         """
         Make an asynchronous HTTP PATCH request.
@@ -217,7 +217,7 @@ class AsyncAPIClient:
         endpoint: str = "",
         headers: Optional[dict[str, Any]] = None,
         params: Optional[dict[str, Any]] = None,
-        **kwargs: dict,
+        **kwargs: Any,
     ) -> httpx.Response:
         """
         Make an asynchronous HTTP DELETE request.
@@ -242,7 +242,3 @@ class AsyncAPIClient:
             method="DELETE", endpoint=endpoint, headers=headers, params=params, **kwargs
         )
         return response
-
-    async def close(self) -> None:
-        """Close the underlying asynchronous HTTP client."""
-        await self._client.aclose()

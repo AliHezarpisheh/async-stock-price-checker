@@ -25,6 +25,6 @@ def setup_logging(logging_config_path: Path) -> None:
     """Set up the logging configurations."""
     logging_config = read_toml(path=logging_config_path)
     # Check or Create the dirs of log files specified in the config.
-    handlers: dict[str, dict] = logging_config.get("handlers", None)
+    handlers = logging_config.get("handlers", None)
     validate_and_create_dirs(handlers=handlers)
     logging.config.dictConfig(logging_config)

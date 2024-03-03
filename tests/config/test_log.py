@@ -6,7 +6,7 @@ from typing import Any, Generator
 
 import pytest
 
-from config.logging import setup_logging
+from config.logging.log import setup_logging
 
 
 @pytest.fixture
