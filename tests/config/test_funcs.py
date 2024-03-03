@@ -2,7 +2,7 @@
 
 import tempfile
 from pathlib import Path
-from typing import Generator, Any
+from typing import Any, Generator
 
 import pytest
 
@@ -36,7 +36,9 @@ def invalid_sample_toml_content() -> str:
 
 
 @pytest.fixture
-def valid_temp_toml_file_path(valid_sample_toml_content: str) -> Generator[Path, None, None]:
+def valid_temp_toml_file_path(
+    valid_sample_toml_content: str,
+) -> Generator[Path, None, None]:
     """
     Fixture: Creating a temporary TOML file with the sample content and yielding Path.
 
@@ -58,7 +60,9 @@ def valid_temp_toml_file_path(valid_sample_toml_content: str) -> Generator[Path,
 
 
 @pytest.fixture
-def invalid_temp_toml_file_path(invalid_sample_toml_content: str) -> Generator[Path, None, None]:
+def invalid_temp_toml_file_path(
+    invalid_sample_toml_content: str,
+) -> Generator[Path, None, None]:
     """
     Fixture: Creating a temporary TOML file with the sample content and yielding Path.
 
@@ -117,7 +121,9 @@ def test_read_toml_file_not_found() -> None:
         read_toml(Path("nonexistence_file.toml"))
 
 
-def test_validate_and_create_dirs_with_path_manager(sample_handlers: dict[str, dict[str, str]]) -> None:
+def test_validate_and_create_dirs_with_path_manager(
+    sample_handlers: dict[str, dict[str, str]],
+) -> None:
     """Test the validate_and_create_dirs function with PathManager."""
     paths = validate_and_create_dirs(sample_handlers)
     for path in paths:

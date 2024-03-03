@@ -9,7 +9,12 @@ import httpx
 class AsyncAPIClient:
     """AsyncAPIClient class for making asynchronous HTTP requests."""
 
-    def __init__(self, base_url: str, timeout: int = 10, default_headers: Optional[dict[str, Any]] = None) -> None:
+    def __init__(
+        self,
+        base_url: str,
+        timeout: int = 10,
+        default_headers: Optional[dict[str, Any]] = None,
+    ) -> None:
         """Initialize the AsyncAPIClient."""
         self.base_url = base_url
         self.timeout = timeout
