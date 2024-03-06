@@ -249,13 +249,13 @@ class AsyncAPIClient:
         return response
 
     def __str__(self) -> str:
-        """Returns a human-readable string representation of the AsyncAPIClient."""
+        """Return a human-readable string representation of the AsyncAPIClient."""
         return f"AsyncAPIClient - Base URL: {self.base_url}, Timeout: {self.timeout}s"
 
     def __repr__(self) -> str:
-        """Returns an unambiguous string representation of the AsyncAPIClient."""
+        """Return an unambiguous string representation of the AsyncAPIClient."""
         return (
-            f"AsyncAPIClient(base_url={repr(self.base_url)}, "
-            f"timeout={repr(self.timeout)}, "
-            f"default_headers={repr(self.default_headers)})"
+            f"AsyncAPIClient(base_url={self.base_url}, "
+            f"timeout={self.timeout}, "
+            f"default_headers={self.default_headers})"
         )
