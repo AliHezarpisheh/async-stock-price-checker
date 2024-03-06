@@ -21,6 +21,8 @@ pytest-sugar = "^1.0.0"
 pytest-mimesis = "^1.1.0"
 pytest-asyncio = "^0.23.5"
 isort = "^5.13.2"
+python-dotenv = "^1.0.1"
+rich = "^13.7.1"
 
 
 [build-system]
@@ -95,4 +97,5 @@ parallel = true
 source = [
     "config",
     "toolkit",
+    "src",
 ]
