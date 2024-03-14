@@ -34,6 +34,7 @@ def test_stock_quote_immutability(stock_quote: StockQuote) -> None:
         stock_quote.symbol = "AAPL"  # type: ignore
 
 
+@pytest.mark.smoke
 def test_add_stock_quote(model: Model, stock_quote: StockQuote) -> None:
     """Verify the functionality of adding a stock quote to the model."""
     model.add_stock_quote(stock_quote=stock_quote)
@@ -41,6 +42,7 @@ def test_add_stock_quote(model: Model, stock_quote: StockQuote) -> None:
     assert model.stock_quotes[0] == stock_quote
 
 
+@pytest.mark.smoke
 def test_remove_stock_quotes(model: Model) -> None:
     """Verify the functionality of removing all stock quotes."""
     model.remove_all_stock_quotes()

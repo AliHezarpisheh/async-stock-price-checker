@@ -23,6 +23,7 @@ def async_client() -> AsyncAPIClient:
     return AsyncAPIClient(base_url=base_url)
 
 
+@pytest.mark.smoke
 @pytest.mark.asyncio
 async def test_get(async_client: AsyncAPIClient) -> None:
     """
@@ -49,6 +50,7 @@ async def test_get(async_client: AsyncAPIClient) -> None:
         mock_request.assert_awaited_once()
 
 
+@pytest.mark.smoke
 @pytest.mark.asyncio
 async def test_post(async_client: AsyncAPIClient) -> None:
     """
@@ -76,6 +78,7 @@ async def test_post(async_client: AsyncAPIClient) -> None:
         mock_request.assert_awaited_once()
 
 
+@pytest.mark.smoke
 @pytest.mark.asyncio
 async def test_put(async_client: AsyncAPIClient) -> None:
     """
@@ -102,6 +105,7 @@ async def test_put(async_client: AsyncAPIClient) -> None:
         mock_request.assert_awaited_once()
 
 
+@pytest.mark.smoke
 @pytest.mark.asyncio
 async def test_patch(async_client: AsyncAPIClient) -> None:
     """
@@ -129,6 +133,7 @@ async def test_patch(async_client: AsyncAPIClient) -> None:
         mock_request.assert_awaited_once()
 
 
+@pytest.mark.smoke
 @pytest.mark.asyncio
 async def test_delete(async_client: AsyncAPIClient) -> None:
     """
