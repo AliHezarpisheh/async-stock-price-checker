@@ -154,3 +154,25 @@ async def test_delete(async_client: AsyncAPIClient) -> None:
         assert response.text == "test"
 
         mock_request.assert_awaited_once()
+
+
+def test_str(async_client: AsyncAPIClient) -> None:
+    actual_str = str(async_client)
+    expected_str = f"AsyncAPIClient - Base URL: {async_client.base_url}, Timeout: {async_client.timeout}s"
+
+    assert (
+        actual_str == expected_str
+    ), f"expect `{expected_str}`, but got `{actual_str}`"
+
+
+def test_repr(async_client: AsyncAPIClient) -> None:
+    actual_repr = repr(async_client)
+    expected_repr = (
+        f"AsyncAPIClient(base_url={async_client.base_url}, "
+        f"timeout={async_client.timeout}, "
+        f"default_headers={async_client.default_headers})"
+    )
+
+    assert (
+        actual_repr == expected_repr
+    ), f"expect `{expected_repr}`, but got `{actual_repr}`"
