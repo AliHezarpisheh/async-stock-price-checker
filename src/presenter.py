@@ -54,9 +54,7 @@ class Presenter:
         stock_quotes = self._model.stock_quotes
         self._view.show_stock_quotes(stock_quotes=stock_quotes)
 
-    async def _fetch_stock_quotes(
-        self, symbols_list: list[str]
-    ) -> Any:
+    async def _fetch_stock_quotes(self, symbols_list: list[str]) -> Any:
         """Fetch stock quotes asynchronously for the given list of symbols.
 
         Parameters
