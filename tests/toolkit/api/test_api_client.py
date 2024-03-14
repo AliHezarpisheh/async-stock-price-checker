@@ -157,8 +157,16 @@ async def test_delete(async_client: AsyncAPIClient) -> None:
 
 
 def test_str(async_client: AsyncAPIClient) -> None:
+    """Test the '__str__' method of AsyncAPIClient.
+
+    This method is responsible for testing the string representation of the
+    AsyncAPIClient class.
+    """
     actual_str = str(async_client)
-    expected_str = f"AsyncAPIClient - Base URL: {async_client.base_url}, Timeout: {async_client.timeout}s"
+    expected_str = (
+        f"AsyncAPIClient - Base URL: {async_client.base_url}, "
+        f"Timeout: {async_client.timeout}s"
+    )
 
     assert (
         actual_str == expected_str
@@ -166,6 +174,12 @@ def test_str(async_client: AsyncAPIClient) -> None:
 
 
 def test_repr(async_client: AsyncAPIClient) -> None:
+    """
+    Test the '__repr__' method of AsyncAPIClient.
+
+    This method is responsible for testing the string representation of the
+    AsyncAPIClient class.
+    """
     actual_repr = repr(async_client)
     expected_repr = (
         f"AsyncAPIClient(base_url={async_client.base_url}, "
