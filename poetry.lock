@@ -308,13 +308,18 @@ files = [
 
 [[package]]
 name = "mimesis"
-version = "4.1.3"
-description = "Mimesis: fake data generator."
+version = "15.1.0"
+description = "Mimesis: Fake Data Generator."
 optional = false
-python-versions = "*"
+python-versions = ">=3.10,<4.0"
 files = [
-    {file = "mimesis-4.1.3.tar.gz", hash = "sha256:90f36c21c1bb9944afc17178eb5868b0c85aa1fe49eb04bcbdafafd1ad4ca2ba"},
+    {file = "mimesis-15.1.0-py3-none-any.whl", hash = "sha256:911e6d1ee3e9e8b73fe7ca3c539c4fc2ff6645b6b3848f1c77b4db95f9d96cca"},
+    {file = "mimesis-15.1.0.tar.gz", hash = "sha256:e1013d2d6bb8156a1449eb1317f31bd40264acf2b41c505bd9f6d7bcbc535406"},
 ]
+
+[package.extras]
+factory = ["factory-boy (>=3.3.0,<4.0.0)"]
+pytest = ["pytest (>=7.2,<8.0)"]
 
 [[package]]
 name = "mypy"
@@ -518,21 +523,6 @@ pytest = ">=4.6"
 testing = ["fields", "hunter", "process-tests", "pytest-xdist", "six", "virtualenv"]
 
 [[package]]
-name = "pytest-mimesis"
-version = "1.1.0"
-description = "Mimesis integration with the pytest test runner"
-optional = false
-python-versions = ">=3.6,<4.0"
-files = [
-    {file = "pytest_mimesis-1.1.0-py3-none-any.whl", hash = "sha256:5cc30a967ee14d50f44074e7bb93f9e9a58b202ef08047deb237efa1e462155d"},
-    {file = "pytest_mimesis-1.1.0.tar.gz", hash = "sha256:26a152067e2de0a0dae8e5045710524785646f8b68c6efdc336b73f15ee292e3"},
-]
-
-[package.dependencies]
-mimesis = ">=4.0,<5.0"
-pytest = ">=4.2"
-
-[[package]]
 name = "pytest-randomly"
 version = "3.15.0"
 description = "Pytest plugin to randomly order tests and control random.seed."
@@ -718,4 +708,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "1420d2e36d1c1639279d4c6c8c28d5e392872dca96244c7d27dbc5c59da84a48"
+content-hash = "89f0bebc700658ced0f983d85b3b9a1b23fe38ff22be219859d4e717d821638a"
