@@ -18,10 +18,6 @@ def get_api_key() -> str:
     -------------
     - The `ALPHAVANTAGE_API_KEY` environment variable is expected to contain API key.
 
-    Postconditions
-    --------------
-    - If successful, returns the Alpha Vantage API key as a string.
-
     Raises
     ------
     ValueError
@@ -40,9 +36,6 @@ def get_api_key() -> str:
         msg = "`ALPHAVANTAGE_API_KEY` is not set in the environment!"
         logger.warning(msg)
         raise ValueError(msg)
-
-    if not isinstance(api_key, str):
-        raise TypeError("API key must be a string.")
 
     logger.debug("Alpha Vantage API key retrieved successfully.")
     return api_key
