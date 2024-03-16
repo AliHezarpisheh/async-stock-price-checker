@@ -60,7 +60,6 @@ def sample_config_path(tmp_path: Path) -> Generator[Path, None, None]:
 
 
 @pytest.mark.smoke
-
 def test_setup_logging(sample_config_path: Path, caplog: Any) -> None:
     """
     Tests the setup of logging configurations using a sample TOML configuration file.

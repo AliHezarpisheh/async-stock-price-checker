@@ -2,7 +2,7 @@
 
 import pytest
 
-from src.model import StockQuote, Model
+from src.model import Model, StockQuote
 
 
 @pytest.fixture(scope="module")
