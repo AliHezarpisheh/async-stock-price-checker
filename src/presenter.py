@@ -117,17 +117,17 @@ class Presenter:
         """
         try:
             symbol_data = stock_data["Global Quote"]
+            valid_stock_data = {
+                key.split(". ")[1].replace(" ", "_"): value
+                for key, value in symbol_data.items()
+            }
+            return valid_stock_data
         except KeyError as error:
             logger.error(
                 "Global Quote is not present in the response, Error: %s", error
             )
             self._view.show_external_service_error()
-
-        valid_stock_data = {
-            key.split(". ")[1].replace(" ", "_"): value
-            for key, value in symbol_data.items()
-        }
-        return valid_stock_data
+            return {}
 
     def _split_symbols(self, symbols_string: str) -> list[str]:
         """Split a comma-separated string of symbols into a list.
