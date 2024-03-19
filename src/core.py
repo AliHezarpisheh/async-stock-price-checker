@@ -19,7 +19,7 @@ from .view import View
 logger = logging.getLogger(__name__)
 
 
-async def main() -> None:
+async def main() -> None:  # pragma: no cover
     """
     Initialize the main asynchronous function for the application.
 

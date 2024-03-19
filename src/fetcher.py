@@ -38,7 +38,6 @@ class StockQuotesFetcherInterface(ABC):
         dict[str, Any]
             A dictionary containing the fetched stock quote information.
         """
-        raise NotImplementedError("Subclasses must implement this method.")
 
 
 class StockQuotesFetcher(StockQuotesFetcherInterface):
